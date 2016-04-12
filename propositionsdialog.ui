@@ -11,9 +11,9 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Pekelník - Výsledky</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,5">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,5,0">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -30,6 +30,9 @@
    </item>
    <item>
     <widget class="QPushButton" name="generateHtmlBtn">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>Vygeneruj HTML pro Stránky</string>
      </property>
@@ -38,8 +41,48 @@
    <item>
     <widget class="QPlainTextEdit" name="htmlPText"/>
    </item>
+   <item>
+    <widget class="QPushButton" name="copyBtn">
+     <property name="text">
+      <string>Zkopírovat vše (CTRL + A, CTRL + C)</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>copyBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>htmlPText</receiver>
+   <slot>selectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>515</x>
+     <y>490</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>527</x>
+     <y>412</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>copyBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>htmlPText</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>447</x>
+     <y>483</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>447</x>
+     <y>364</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

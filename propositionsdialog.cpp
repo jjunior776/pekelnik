@@ -21,6 +21,7 @@ void PropositionsDialog::on_loadFromCSV_clicked()
 {
     QString filename = QFileDialog::getOpenFileName(this, "Otevři CSV", QDir::currentPath(), "CSV (*.csv)");
     QFile file (filename);
+    model->clear();
     if (file.open(QIODevice::ReadOnly)){
         //QString data = file.readAll();
         //qDebug() << data;
@@ -42,6 +43,7 @@ void PropositionsDialog::on_loadFromCSV_clicked()
                 temp.append(character);
             }
         }
+        ui->generateHtmlBtn->setEnabled(true);
     }
 }
 
@@ -88,3 +90,5 @@ void PropositionsDialog::on_generateHtmlBtn_clicked()
 
 
 }
+
+

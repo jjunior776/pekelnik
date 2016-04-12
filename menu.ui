@@ -11,9 +11,12 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Menu</string>
+   <string>Pekelník - Menu</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
+  <property name="whatsThis">
+   <string notr="true"/>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
@@ -67,6 +70,30 @@
        </property>
        <property name="text">
         <string>Výsledky</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Made by Průcha Radek&lt;/p&gt;&lt;p&gt;Created in Qt Creator - Qt&lt;/p&gt;&lt;p&gt;Source: https://github.com/jjunior776/pekelnik&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>

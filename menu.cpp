@@ -6,7 +6,9 @@ Menu::Menu(QWidget *parent) :
     ui(new Ui::Menu)
 {
     ui->setupUi(this);
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     propositions = new PropositionsDialog;
+
 }
 
 Menu::~Menu()
