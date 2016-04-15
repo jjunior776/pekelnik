@@ -70,22 +70,64 @@ void PropositionsDialog::checkString(QString &temp, QChar character){
 
 void PropositionsDialog::on_generateHtmlBtn_clicked()
 {
-    QString html;
+    QString html = "";
     QString input;
-    html = "<table class=\"vysledky\">\n<tr><th>#</th>\n<th>Jméno</th>\n<th>Příjmení</th>\n<th>Čas</th></tr>\n\n";
-    for(int i=1;i<model->rowCount();i++){
-        html += "<tr>\n";
+    QString style = "";
+    bool table = false;
+    bool head = false;
+    int category = false;
+    for(int i=0;i<model->rowCount();i++){
+
+        if((table)&&(category<=0)){
+            if(i==model->rowCount()-1){
+                html += "<tr>";
+            } else if(model->data(model->index(i,0)).toString()!=""){
+                html += "<tr>";
+            }
+        }
         for(int j=0;j<model->columnCount();j++){
                 input = model->data(model->index(i,j)).toString();
-                if(j==model->columnCount()-1)
-                    input = input.mid(0,input.size()-1);
-                html += "<td>"+input+"</td>";
+                if((j==0)||(j==1)||(j==4)||(j==5)||(j==6))
+                    style = " class=\"naStred\" style=\"width: 0%;\"";
+                else
+                    style = "";
+                if(table){
+                    if(head){
+                        if(j==model->columnCount()-1)
+                            input = input.mid(0,input.size()-1);
+                        html += "<th"+style+">"+input+"</th>";
+                    }
+                    else if((j==0)&&(input=="")){
+                        html += "</table>\n";
+                        table = false;
+                        category = 9;
+                    }
+                    else{
+                        if(j==model->columnCount()-1)
+                            input = input.mid(0,input.size()-1);
+                        html += "<td"+style+">"+input+"</td>";
+                    }
 
+                }
+                else if((input.left(9)=="Kategorie")||(input.left(9)=="kategorie")){
+                    html += "<h3 class=\"vysledky_nadpis\">"+input+"</h3>\n";
+                    category = 2;
+                }
         }
-        html +="\n</tr>\n";
+        category--;
+        if(table)
+            html += "</tr>\n";
+        if(category<1){
+            table = true;
+            head = false;
+            if(category==0){
+                head = true;
+                html += "<table class=\"vysledky\">\n";
+            }
+        }
     }
-    html += "</table>";
-
+    if(table)
+        html += "</table>";
     ui->htmlPText->setPlainText(html);
 
 
