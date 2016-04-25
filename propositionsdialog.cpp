@@ -88,9 +88,9 @@ void PropositionsDialog::on_generateHtmlBtn_clicked()
         for(int j=0;j<model->columnCount();j++){
                 input = model->data(model->index(i,j)).toString();
                 if((j==0)||(j==1)||(j==4)||(j==5)||(j==6))
-                    style = " class=\"naStred\" style=\"width: 0%;\"";
+                    style = " class=\"naStred\" style=\"width: 10%;\" ";
                 else
-                    style = "";
+                    style = " style=\"width: 25%;\" ";
                 if(table){
                     if(head){
                         if(j==model->columnCount()-1)
