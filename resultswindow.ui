@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PropositionsDialog</class>
- <widget class="QWidget" name="PropositionsDialog">
+ <class>ResultsWindow</class>
+ <widget class="QWidget" name="ResultsWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Pekelník - Výsledky</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,5,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,5,0">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -29,14 +29,46 @@
     <widget class="QTableView" name="resultsTableV"/>
    </item>
    <item>
-    <widget class="QPushButton" name="generateHtmlBtn">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>Vygeneruj HTML pro Stránky</string>
-     </property>
-    </widget>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Nadpis:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="highlightEdit">
+       <property name="text">
+        <string>Výsledky - </string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>URL na PDF</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="pdfUrlEdit"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0">
+     <item>
+      <widget class="QPushButton" name="generateHtmlBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Vygeneruj HTML pro Stránky</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QPlainTextEdit" name="htmlPText"/>

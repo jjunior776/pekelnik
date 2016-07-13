@@ -7,7 +7,8 @@ Menu::Menu(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    propositions = new PropositionsDialog;
+    resultsWindow = new ResultsWindow;
+    continuousResultsWindow = new ContinuousResultsWindow;
 
 }
 
@@ -18,6 +19,11 @@ Menu::~Menu()
 
 void Menu::on_resultsBtn_clicked()
 {
-    propositions->show();
+    resultsWindow->show();
 
+}
+
+void Menu::on_continuousResultBtn_clicked()
+{
+    continuousResultsWindow->show();
 }

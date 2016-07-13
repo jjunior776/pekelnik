@@ -2,7 +2,8 @@
 #define MENU_H
 
 #include <QDialog>
-#include "propositionsdialog.h"
+#include "resultswindow.h"
+#include "continuousresultswindow.h"
 
 namespace Ui {
 class Menu;
@@ -19,9 +20,12 @@ public:
 private slots:
     void on_resultsBtn_clicked();
 
+    void on_continuousResultBtn_clicked();
+
 private:
     Ui::Menu *ui;
-    PropositionsDialog *propositions;
+    ResultsWindow *resultsWindow;
+    ContinuousResultsWindow *continuousResultsWindow;
 };
 
 #endif // MENU_H

@@ -1,10 +1,10 @@
-#include "propositionsdialog.h"
-#include "ui_propositionsdialog.h"
+#include "resultswindow.h"
+#include "ui_resultswindow.h"
 #include "QDebug"
 
-PropositionsDialog::PropositionsDialog(QWidget *parent) :
+ResultsWindow::ResultsWindow(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::PropositionsDialog)
+    ui(new Ui::ResultsWindow)
 {
     ui->setupUi(this);
     model = new QStandardItemModel(this);
@@ -12,70 +12,41 @@ PropositionsDialog::PropositionsDialog(QWidget *parent) :
     ui->resultsTableV->horizontalHeader()->setStretchLastSection(true);
 }
 
-PropositionsDialog::~PropositionsDialog()
+ResultsWindow::~ResultsWindow()
 {
     delete ui;
 }
 
-void PropositionsDialog::on_loadFromCSV_clicked()
+void ResultsWindow::on_loadFromCSV_clicked()
 {
     QString filename = QFileDialog::getOpenFileName(this, "Otevři CSV", QDir::currentPath(), "CSV (*.csv)");
     QFile file (filename);
     model->clear();
     if (file.open(QIODevice::ReadOnly)){
-        //QString data = file.readAll();
-        //qDebug() << data;
-        //data.remove( QRegExp("\r"));
-        QString temp;
-        QChar character;
-        QTextStream textStream(file.readAll());
-        textStream.setCodec("ANSI");
-        while(!textStream.atEnd()){
-            textStream >> character;
-            if(character == ';'){
-                checkString(temp, character);
-            } else if (character == '\n'){
-                checkString(temp, character);
-            } else if (textStream.atEnd()){
-                temp.append(character);
-                checkString(temp);
-            } else {
-                temp.append(character);
-            }
-        }
+        //QString data = file.readAll(); //qDebug() << data; //data.remove( QRegExp("\r"));;
+        QTextStream stream(file.readAll());
+        stream.setCodec("ANSI");
+
+        CSVReader *csv = new CSVReader();
+        csv->loadFromCSV(stream,model);
         ui->generateHtmlBtn->setEnabled(true);
     }
 }
 
-void PropositionsDialog::checkString(QString &temp, QChar character){
-    if(temp.count("\"")%2 == 0) {
-        if(temp.startsWith(QChar('\"')) && temp.endsWith(QChar('\"'))){
-            temp.remove( QRegExp("^\""));
-            temp.remove( QRegExp("\"$"));
-        }
-        temp.replace("\"\"", "\"");
-        QStandardItem *item = new QStandardItem(temp);
-        standardItemList.append(item);
-        if(character != QChar(';')){
-            model->appendRow(standardItemList);
-            standardItemList.clear();
-        }
-        temp.clear();
-    }
-    else{
-            temp.append(character);
-
-    }
-}
-
-void PropositionsDialog::on_generateHtmlBtn_clicked()
+void ResultsWindow::on_generateHtmlBtn_clicked()
 {
     QString html = "";
+    QString headHtml = "";
+    QString finalHtml = "";
     QString input;
     QString style = "";
+    QString temp;
     bool table = false;
     bool head = false;
-    int category = false;
+    int category = 999;
+    headHtml = "<h3 class=\"vysledky_hlavni_nadpis\">"+ui->highlightEdit->text()+"</h3><br>\n";
+    headHtml += "<small><a href=\""+ui->pdfUrlEdit->text()+"\" download>PDF ke stažení</a></small><br>\n";
+    headHtml += "<ul class=\"osnova_zavody\">\n";
     for(int i=0;i<model->rowCount();i++){
 
         if((table)&&(category<=0)){
@@ -110,7 +81,8 @@ void PropositionsDialog::on_generateHtmlBtn_clicked()
 
                 }
                 else if((input.left(9)=="Kategorie")||(input.left(9)=="kategorie")){
-                    html += "<h3 class=\"vysledky_nadpis\">"+input+"</h3>\n";
+                    html += "<h3 id=\"K"+input.mid(12, input.size()-12).replace(' ','_')+"\" class=\"vysledky_nadpis\">"+input+"</h3>\n";
+                    headHtml += "<li><a href=\"#K"+input.mid(12, input.size()-12).replace(' ','_')+"\">"+input.mid(12, input.size()-12)+"</a></li>\n";
                     category = 2;
                 }
         }
@@ -128,7 +100,8 @@ void PropositionsDialog::on_generateHtmlBtn_clicked()
     }
     if(table)
         html += "</table>";
-    ui->htmlPText->setPlainText(html);
+    finalHtml = headHtml+html;
+    ui->htmlPText->setPlainText(finalHtml);
 
 
 }

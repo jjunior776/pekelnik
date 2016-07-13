@@ -14,10 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         menu.cpp \
-    propositionsdialog.cpp
+    continuousresultswindow.cpp \
+    resultswindow.cpp \
+    csvreader.cpp
 
 HEADERS  += menu.h \
-    propositionsdialog.h
+    continuousresultswindow.h \
+    resultswindow.h \
+    csvreader.h
 
 FORMS    += menu.ui \
-    propositionsdialog.ui
+    continuousresultswindow.ui \
+    resultswindow.ui
