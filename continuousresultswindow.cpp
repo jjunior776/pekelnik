@@ -56,6 +56,10 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
             html+= "<tr>";
         for(int j=0;j<model->columnCount();j++){
             input = model->data(model->index(i,j)).toString();
+            if((j==0)||((j>2)&&(j<11)))
+                style = " class=\"naStred\" style=\"width: 10%;\" ";
+            else
+                style = " style=\"width: 25%;\" ";
             if(table){
                 if (head){
                     //if(j>0){
