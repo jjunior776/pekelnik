@@ -65,7 +65,7 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
                             z++;
                             input = "Z"+QString::number(z);
                         }
-                        if(j!=11)
+                        if((j!=11)&&(j!=12)&&(j!=2))
                             html += "<th"+style+">"+input+"</th>";
                     //}
                 }
@@ -74,7 +74,7 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
                         empty++;
                     if(j==model->columnCount()-1)
                         input = input.mid(0,input.size()-1);
-                    if(j!=11)
+                    if((j!=11)&&(j!=12)&&(j!=2))
                         html += "<td"+style+">"+input+"</td>";
                 }
             }
@@ -85,6 +85,7 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
             }
         }
         category--;
+        z=0;
         if(category==1){
             table = true;
             head = true;
