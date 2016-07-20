@@ -100,6 +100,7 @@ void ResultsWindow::on_generateHtmlBtn_clicked()
     }
     if(table)
         html += "</table>";
+    headHtml += "</ul>";
     finalHtml = headHtml+html;
     ui->htmlPText->setPlainText(finalHtml);
 

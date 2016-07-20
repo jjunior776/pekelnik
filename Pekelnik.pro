@@ -26,3 +26,6 @@ HEADERS  += menu.h \
 FORMS    += menu.ui \
     continuousresultswindow.ui \
     resultswindow.ui
+
+RESOURCES += \
+    img.qrc

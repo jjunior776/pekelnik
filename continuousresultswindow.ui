@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Pekelník - Výsledky</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -25,17 +25,88 @@
     <widget class="QTableView" name="resultsTableV"/>
    </item>
    <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Nadpis:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="highlightEdit">
+       <property name="text">
+        <string>Průběžné výsledky</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>URL na PDF</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="pdfUrlEdit"/>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QPushButton" name="generateHtmlBtn">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="text">
-      <string>html</string>
+      <string>Vygeneruj HTML pro Stránky</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPlainTextEdit" name="htmlPText"/>
    </item>
+   <item>
+    <widget class="QPushButton" name="copyBtn">
+     <property name="text">
+      <string>Zkopírovat vše (CTRL + A, CTRL + C)</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>copyBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>htmlPText</receiver>
+   <slot>selectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>322</x>
+     <y>442</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>350</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>copyBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>htmlPText</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>322</x>
+     <y>442</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>350</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

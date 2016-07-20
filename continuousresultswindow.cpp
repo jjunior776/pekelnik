@@ -29,7 +29,7 @@ void ContinuousResultsWindow::on_loadFromCSV_clicked()
 
         CSVReader *csv = new CSVReader();
         csv->loadFromCSV(stream,model);
-        //ui->generateHtmlBtn->setEnabled(true);
+        ui->generateHtmlBtn->setEnabled(true);
     }
 }
 
@@ -40,26 +40,27 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
     QString finalHtml = "";
     QString input;
     QString style = "";
-    QString pStyle = "";
-    QString temp;
+    QString inputLink;
+    QStringList zavody;
+    bool zavodyHotovo = false;
     bool table = false;
     bool head = false;
     int category = 999;
     int empty = 0;
     int z = 0;
 
-    //headHtml = "<h3 class=\"vysledky_hlavni_nadpis\">"+ui->highlightEdit->text()+"</h3><br>\n";
-    //headHtml += "<small><a href=\""+ui->pdfUrlEdit->text()+"\" download>PDF ke stažení</a></small><br>\n";
-    //DODELAT OSNOVU!!!!
+    headHtml = "<h2 class=\"vysledky_hlavni_nadpis\">"+ui->highlightEdit->text()+"</h2><br>\n";
+    headHtml += "<small><a class=\"button\" href=\""+ui->pdfUrlEdit->text()+"\" download>PDF ke stažení</a></small><br>\n";
+    headHtml += "<table style=\"border: 0px\"><tr style=\"border: 0px\"><td style=\"border: 0px\"><ul class=\"osnova_zavody\">\n";
     for(int i=0;i<model->rowCount();i++){
         if(table)
             html+= "<tr>";
         for(int j=0;j<model->columnCount();j++){
             input = model->data(model->index(i,j)).toString();
             if((j==0)||((j>2)&&(j<11)))
-                style = " class=\"naStred\" style=\"width: 10%;\" ";
+                style = " class=\"naStred\" style=\"width: 5% !important;\" ";
             else
-                style = " style=\"width: 25%;\" ";
+                style = " style=\"width: 20% !important;\" ";
             if(table){
                 if (head){
                     //if(j>0){
@@ -67,6 +68,8 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
                             input = input.mid(0,input.size()-1);
                         if((j>2)&&(j<10)){
                             z++;
+                            if(!zavodyHotovo)
+                                    zavody.append(input);
                             input = "Z"+QString::number(z);
                         }
                         if((j!=11)&&(j!=12)&&(j!=2))
@@ -83,7 +86,10 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
                 }
             }
             else if((!table)&&(input!="")&&(j==1)&&(category>2)){                 //pokud si narazil na tabulku -> vytvor ji
-                html += input + "<br>";  //nadpis
+                //html +=  + "<br>";  //nadpis
+                inputLink = input;
+                html += "<h3 id=\"K"+input.replace(' ','_')+"\" class=\"vysledky_nadpis\">"+inputLink+"</h3>\n";
+                headHtml += "<li><a href=\"#K"+input.replace(' ','_')+"\">"+inputLink+"</a></li>\n";
                 category = 2;
 
             }
@@ -103,6 +109,7 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
             html += "</tr>\n";
         }
         if(empty==3){
+            zavodyHotovo = true;
             html += "</table>\n";
             table = false;
             empty = 0;
@@ -116,6 +123,13 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
 
     }
     html+="</table>";
+    headHtml += "</ul></td><td style=\"border: 0px\">";
+    foreach (QString zavod, zavody) {
+        z++;
+        headHtml+= "Z"+QString::number(z)+" = " + zavod + "<br>";
+    }
+    headHtml+= "</td></tr></table>";
     finalHtml = headHtml+html;
     ui->htmlPText->setPlainText(finalHtml);
 }
+
