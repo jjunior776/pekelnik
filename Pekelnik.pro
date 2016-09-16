@@ -16,16 +16,19 @@ SOURCES += main.cpp\
         menu.cpp \
     continuousresultswindow.cpp \
     resultswindow.cpp \
-    csvreader.cpp
+    csvreader.cpp \
+    overallresultswindow.cpp
 
 HEADERS  += menu.h \
     continuousresultswindow.h \
     resultswindow.h \
-    csvreader.h
+    csvreader.h \
+    overallresultswindow.h
 
 FORMS    += menu.ui \
     continuousresultswindow.ui \
-    resultswindow.ui
+    resultswindow.ui \
+    overallresultswindow.ui
 
 RESOURCES += \
     img.qrc
