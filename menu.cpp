@@ -9,7 +9,7 @@ Menu::Menu(QWidget *parent) :
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     resultsWindow = new ResultsWindow;
     continuousResultsWindow = new ContinuousResultsWindow;
-
+    teamResultsWindow = new TeamResultsWindow;
 }
 
 Menu::~Menu()
@@ -26,4 +26,9 @@ void Menu::on_resultsBtn_clicked()
 void Menu::on_continuousResultBtn_clicked()
 {
     continuousResultsWindow->show();
+}
+
+void Menu::on_teamResiltsBtn_clicked()
+{
+    teamResultsWindow->show();
 }

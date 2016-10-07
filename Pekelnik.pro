@@ -17,18 +17,18 @@ SOURCES += main.cpp\
     continuousresultswindow.cpp \
     resultswindow.cpp \
     csvreader.cpp \
-    overallresultswindow.cpp
+    teamresultswindow.cpp
 
 HEADERS  += menu.h \
     continuousresultswindow.h \
     resultswindow.h \
     csvreader.h \
-    overallresultswindow.h
+    teamresultswindow.h
 
 FORMS    += menu.ui \
     continuousresultswindow.ui \
     resultswindow.ui \
-    overallresultswindow.ui
+    teamresultswindow.ui
 
 RESOURCES += \
     img.qrc

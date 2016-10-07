@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "resultswindow.h"
 #include "continuousresultswindow.h"
+#include "teamresultswindow.h"
 
 namespace Ui {
 class Menu;
@@ -22,10 +23,13 @@ private slots:
 
     void on_continuousResultBtn_clicked();
 
+    void on_teamResiltsBtn_clicked();
+
 private:
     Ui::Menu *ui;
     ResultsWindow *resultsWindow;
     ContinuousResultsWindow *continuousResultsWindow;
+    TeamResultsWindow *teamResultsWindow;
 };
 
 #endif // MENU_H

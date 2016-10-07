@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/logo">
         <file>peklo.png</file>
+        <file>favicon-32x321.png</file>
     </qresource>
 </RCC>

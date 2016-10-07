@@ -41,13 +41,14 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
     QString input;
     QString style = "";
     QString inputLink;
-    QStringList zavody;
-    bool zavodyHotovo = false;
+    QStringList races;
+    bool racesDone = false;
     bool table = false;
     bool head = false;
     int category = 999;
     int empty = 0;
     int z = 0;
+    bool finalResults = ui->finalResultsChB->isChecked();
 
     headHtml = "<h2 class=\"vysledky_hlavni_nadpis\">"+ui->highlightEdit->text()+"</h2><br>\n";
     headHtml += "<small><a class=\"button\" href=\""+ui->pdfUrlEdit->text()+"\" download>PDF ke stažení</a></small><br>\n";
@@ -57,7 +58,7 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
             html+= "<tr>";
         for(int j=0;j<model->columnCount();j++){
             input = model->data(model->index(i,j)).toString();
-            if((j==0)||((j>2)&&(j<11)))
+            if((j==0)||(j>2))
                 style = " class=\"naStred\" style=\"width: 5% !important;\" ";
             else
                 style = " style=\"width: 20% !important;\" ";
@@ -66,14 +67,21 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
                     //if(j>0){
                         if(j==model->columnCount()-1)
                             input = input.mid(0,input.size()-1);
-                        if((j>2)&&(j<10)){
+                        if((j>2)&&(j<10)){                          //TODO: udelat na libovolnej pocet zavodu!
                             z++;
-                            if(!zavodyHotovo)
-                                    zavody.append(input);
+                            if(!racesDone)
+                                    races.append(input);
                             input = "Z"+QString::number(z);
                         }
-                        if((j!=11)&&(j!=12)&&(j!=2))
-                            html += "<th"+style+">"+input+"</th>";
+                        if(finalResults){
+                            if(j!=2)
+                                html += "<th"+style+">"+input+"</th>";
+                        }
+                        else{
+                            if((j!=11)&&(j!=12)&&(j!=2))
+                                html += "<th"+style+">"+input+"</th>";
+                        }
+
                     //}
                 }
                 else {
@@ -81,8 +89,14 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
                         empty++;
                     if(j==model->columnCount()-1)
                         input = input.mid(0,input.size()-1);
-                    if((j!=11)&&(j!=12)&&(j!=2))
-                        html += "<td"+style+">"+input+"</td>";
+                    if(finalResults){
+                        if(j!=2)
+                            html += "<td"+style+">"+input+"</td>";
+                    }
+                    else{
+                        if((j!=11)&&(j!=12)&&(j!=2))
+                            html += "<td"+style+">"+input+"</td>";
+                    }
                 }
             }
             else if((!table)&&(input!="")&&(j==1)&&(category>2)){                 //pokud si narazil na tabulku -> vytvor ji
@@ -109,7 +123,7 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
             html += "</tr>\n";
         }
         if(empty==3){
-            zavodyHotovo = true;
+            racesDone = true;
             html += "</table>\n";
             table = false;
             empty = 0;
@@ -124,7 +138,7 @@ void ContinuousResultsWindow::on_generateHtmlBtn_clicked()
     }
     html+="</table>";
     headHtml += "</ul></td><td style=\"border: 0px\">";
-    foreach (QString zavod, zavody) {
+    foreach (QString zavod, races) {
         z++;
         headHtml+= "Z"+QString::number(z)+" = " + zavod + "<br>";
     }
