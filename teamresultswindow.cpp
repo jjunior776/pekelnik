@@ -42,6 +42,7 @@ void TeamResultsWindow::on_generateHtmlBtn_clicked()
     QString finalHtml = "";
     QString input;
     QString styleNaStred = " class=\"naStred\" style=\"width: 5% !important;\" ";
+    QString styleNaStredM = " class=\"naStred\" style=\"width: 20% !important;\" ";
     QString style = "";
     QString inputLink;
     QStringList races;
@@ -55,7 +56,7 @@ void TeamResultsWindow::on_generateHtmlBtn_clicked()
 
     headHtml = "<h2 class=\"vysledky_hlavni_nadpis\">"+ui->highlightEdit->text()+"</h2><br>\n";
     headHtml += "<small><a class=\"button\" href=\""+ui->pdfUrlEdit->text()+"\" download>PDF ke stažení</a></small><br>\n";
-    //headHtml += "<table style=\"border: 0px\"><tr style=\"border: 0px\"><td style=\"border: 0px\"><ul class=\"osnova_zavody\">\n";
+    headHtml += "<table style=\"border: 0px\"><tr style=\"border: 0px\">\n";
     int rowSpanCount = 0;
     for(int i=0;i<model->rowCount();i++){
         input = model->data(model->index(i,1)).toString();
@@ -71,12 +72,13 @@ void TeamResultsWindow::on_generateHtmlBtn_clicked()
 
     teamHeaderHtml += "<table class=\"vysledky\">\n<tr>\n<th"+styleNaStred+">Pořadí</th>";
     style = " style=\"width: 20% !important;\" ";
-    teamHeaderHtml += "<th"+style+">Tým</th>";
-    teamHeaderHtml += "<th"+style+">Člen</th>";
+    teamHeaderHtml += "<th"+styleNaStredM+">Tým</th>";
+    teamHeaderHtml += "<th"+styleNaStredM+">Závodník</th>";
     for(int i=3;i<model->columnCount()-1;i++){
-        input = model->data(model->index(i,0)).toString();
+        input = model->data(model->index(0,i)).toString();
         races.append(input);
-        teamHeaderHtml += "<th"+styleNaStred+">Z"+races.count()+".</th>";
+        //qDebug() << input;
+        teamHeaderHtml += "<th"+styleNaStred+">Z"+QString::number(races.count())+"</th>";
     }
     teamHeaderHtml += "<th"+styleNaStred+">Body celkem</th></tr>\n";
 
@@ -91,13 +93,17 @@ void TeamResultsWindow::on_generateHtmlBtn_clicked()
         else{
             html+= "<tr>";
         }
+        style = "";
         for(int j=2;j<model->columnCount();j++){
             input = model->data(model->index(i,j)).toString();
-            html+= "<td>"+input+"</td>";
+            if(input=="body celkem")
+                style = " style=\"background-color: #CCCCCC\"";
+            html+= "<td"+style+">"+input+"</td>";
         }
         html += "</tr>";
     }
-    //headHtml += "</ul></td><td style=\"border: 0px\">";
+    html += "</table>";
+    headHtml += "<td style=\"border: 0px\">";
     foreach (QString race, races) {
         z++;
         headHtml+= "Z"+QString::number(z)+" = " + race + "<br>";
@@ -106,3 +112,4 @@ void TeamResultsWindow::on_generateHtmlBtn_clicked()
     finalHtml = headHtml+html;
     ui->htmlPText->setPlainText(finalHtml);
 }
+
