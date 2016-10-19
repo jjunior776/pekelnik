@@ -10,6 +10,7 @@ Menu::Menu(QWidget *parent) :
     resultsWindow = new ResultsWindow;
     continuousResultsWindow = new ContinuousResultsWindow;
     teamResultsWindow = new TeamResultsWindow;
+    propositionsWindow = new PropositionsWindow;
 }
 
 Menu::~Menu()
@@ -31,4 +32,9 @@ void Menu::on_continuousResultBtn_clicked()
 void Menu::on_teamResiltsBtn_clicked()
 {
     teamResultsWindow->show();
+}
+
+void Menu::on_propositionsBtn_clicked()
+{
+    propositionsWindow->show();
 }

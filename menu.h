@@ -5,6 +5,7 @@
 #include "resultswindow.h"
 #include "continuousresultswindow.h"
 #include "teamresultswindow.h"
+#include "propositionswindow.h"
 
 namespace Ui {
 class Menu;
@@ -25,11 +26,14 @@ private slots:
 
     void on_teamResiltsBtn_clicked();
 
+    void on_propositionsBtn_clicked();
+
 private:
     Ui::Menu *ui;
     ResultsWindow *resultsWindow;
     ContinuousResultsWindow *continuousResultsWindow;
     TeamResultsWindow *teamResultsWindow;
+    PropositionsWindow *propositionsWindow;
 };
 
 #endif // MENU_H

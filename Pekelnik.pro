@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,18 +17,21 @@ SOURCES += main.cpp\
     continuousresultswindow.cpp \
     resultswindow.cpp \
     csvreader.cpp \
-    teamresultswindow.cpp
+    teamresultswindow.cpp \
+    propositionswindow.cpp
 
 HEADERS  += menu.h \
     continuousresultswindow.h \
     resultswindow.h \
     csvreader.h \
-    teamresultswindow.h
+    teamresultswindow.h \
+    propositionswindow.h
 
 FORMS    += menu.ui \
     continuousresultswindow.ui \
     resultswindow.ui \
-    teamresultswindow.ui
+    teamresultswindow.ui \
+    propositionswindow.ui
 
 RESOURCES += \
     img.qrc

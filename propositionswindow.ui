@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PropositionsWindow</class>
+ <widget class="QWidget" name="PropositionsWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>582</width>
+    <height>375</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_3">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>314</width>
+          <height>669</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <layout class="QFormLayout" name="formLayout">
+             <item row="2" column="0">
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Nadnadpis:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Nadpis:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Podnadpis:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>Odkaz na PDF:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>Termín:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>Pořadatel:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>Místo:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>Ředitel závodu:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>Prezentace:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>Logo (pro pdf):</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="logoText"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="h1Text"/>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="h2Text"/>
+             </item>
+             <item row="4" column="1">
+              <widget class="QLineEdit" name="h3Text"/>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="pdfText"/>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="dateText"/>
+             </item>
+             <item row="7" column="1">
+              <widget class="QLineEdit" name="organizerText"/>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLineEdit" name="placeText"/>
+             </item>
+             <item row="9" column="1">
+              <widget class="QLineEdit" name="directorText"/>
+             </item>
+             <item row="10" column="1">
+              <widget class="QLineEdit" name="presentationText"/>
+             </item>
+             <item row="11" column="1">
+              <widget class="QLineEdit" name="categoryText"/>
+             </item>
+             <item row="11" column="0">
+              <widget class="QLabel" name="label_11">
+               <property name="text">
+                <string>Tabulka Kategorií</string>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="1">
+              <widget class="QPushButton" name="categoryBtn">
+               <property name="text">
+                <string>Vybrat tabulku kategorií (.CSV)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="1">
+              <widget class="QTextEdit" name="trackText"/>
+             </item>
+             <item row="13" column="0">
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Trať:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="1">
+              <widget class="QTextEdit" name="rulesText"/>
+             </item>
+             <item row="14" column="0">
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>Předpis:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="15" column="0">
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>Mytí:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="15" column="1">
+              <widget class="QLineEdit" name="cleaningText"/>
+             </item>
+             <item row="16" column="0">
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>Zdravotníci:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="16" column="1">
+              <widget class="QLineEdit" name="medicsText"/>
+             </item>
+             <item row="17" column="0">
+              <widget class="QLabel" name="label_16">
+               <property name="text">
+                <string>Ceny:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="17" column="1">
+              <widget class="QLineEdit" name="priceText"/>
+             </item>
+             <item row="18" column="0">
+              <widget class="QLabel" name="label_17">
+               <property name="text">
+                <string>Ke stažení:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="18" column="1">
+              <widget class="QTextEdit" name="downloadText"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QPushButton" name="logoBtn">
+               <property name="text">
+                <string>Vybrat logo</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="htmlBtn">
+         <property name="text">
+          <string>Vygenerovat HTML</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pdfBtn">
+         <property name="text">
+          <string>Vygenerovat PDF</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_18">
+       <property name="text">
+        <string>Výsledné HTML</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="htmlText"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="copyBtn">
+       <property name="text">
+        <string>Vybrat a zkopírovat</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
